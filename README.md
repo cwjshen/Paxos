@@ -4,6 +4,7 @@ Jason Shen
 
 
 # Instructions for running the code:
+
 ### Prior to running:
 
 * Download repository
@@ -68,4 +69,15 @@ cd Paxos/question2
 
 ``` 
 $ python main.py prices.txt 2500
+
+(('Candy Bar', 500), ('Earmuffs', 2000))
+```
+
+* An optional fourth argument can be provided to run the bonus question:
+``` 
+$ python main.py prices.txt 2500 triple
+
+(('Candy Bar', 500), ('Earmuffs', 2000))
+```
+
 
