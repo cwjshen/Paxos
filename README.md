@@ -90,7 +90,7 @@ $python test.py
 
 ### Problem 3
 
-* Default driver program is main.py. To run:
+* Default driver program is main.py, imports helper.py. To run:
 
 ``` 
 $ python main.py 1X0X
