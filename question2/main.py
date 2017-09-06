@@ -9,7 +9,6 @@ def main(argv):
 		print "Usage: python main.py <file-name> <gift card amount> <OPTION: 'triple' | 'pair'> "
 		print "Example: 'python main.py prices.txt 2500 triple'"
 	else:
-		print argv
 		# Read the text file
 		f = open(argv[1])
 
