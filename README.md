@@ -77,7 +77,32 @@ $ python main.py prices.txt 2500
 ``` 
 $ python main.py prices.txt 2500 triple
 
-(('Candy Bar', 500), ('Earmuffs', 2000))
+(('Candy Bar', 500), ('Paperback Book', 700), ('Detergent', 1000))
 ```
 
+* test.py contains unit tests:
 
+```
+$python test.py
+```
+
+* Implementation details and explanations are provided in solutions.txt
+
+### Problem 3
+
+* Default driver program is main.py. To run:
+
+``` 
+$ python main.py 1X0X
+
+1000
+1001
+1100
+1101
+```
+* test_binary.py contains unit tests
+```
+$ python test_binary.py
+```
+
+* Implementation details are provided in solutions.txt
