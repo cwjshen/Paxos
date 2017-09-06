@@ -84,7 +84,8 @@ class TestFindTriple(unittest.TestCase):
 		self.item_list = [('apple', 400), 
 					      ('banana', 900),
 					      ('candy', 1000),
-					      ('drakes new album', 2000)]
+					      ('drakes new album', 2000), 
+					      ('egg', 2500)]
 		solution = (('apple', 400), ('banana', 900), ('candy', 1000))
 		self.assertTrue(find_triple(self.item_list, self.gift_card) == solution)
 

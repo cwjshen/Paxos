@@ -62,7 +62,12 @@ def find_triple(item_list, gift_card):
 			remaining_list = list(item_list)
 			del remaining_list[i]			
 
-			item2, item3 = find_pair(remaining_list, gift_card - item1[1])	
+			try:
+				item2, item3 = find_pair(remaining_list, gift_card - item1[1])
+			# If unable to find a valid pair in the remaining list, then move on to next i
+			except Exception:
+				continue
+
 			item_sum = item1[1] + item2[1] + item3[1]
 
 			if item_sum == gift_card:
