@@ -1,0 +1,7 @@
+In my solution, I use recursive calls to iterate through the input string 
+	and build an output string. Each time an 'X' is encountered, two recursive
+	calls are made to account for both a 1 or a 0.
+
+Each X in the string represents two additional states that the string could have. 
+	There should be 2^n total possible string outputs where n is the number of X's.
+	Thus runtime is O(2^n)

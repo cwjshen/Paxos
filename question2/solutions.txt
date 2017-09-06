@@ -1,0 +1,102 @@
+**Assumptions**
+--The given list is sorted in non-descending order, that is there is an initial overhead cost of O(n log n).
+--All items in the list are unique
+--You cannot purchase two of the same item
+
+1. find_pair
+
+	Because we are given a monotonic sorted list in non-descending order, it is necessarily true that
+		for any price sum given by 2 gifts in the list, replacing a gift with one that
+		is further down the list will increase the sum, and replacing a gift with one
+		that is further up the list will decrease the sum.
+
+	We start from the sum provided by the two ends of the lists and continue to increase
+		or decrease the sum by choosing new gifts one by one either from the front or
+		the end of the list.
+
+	We know that any increase to the sum will also be the smallest possible 
+		increase we can make, and any decrease will similarly be the smallest possible
+		decrease we can make. 
+
+	Thus we can approach our target sum by making the smallest possible adjustments to the 
+		current sum.
+
+	Ex: Target - 2000 
+	100, 400, 700, 1100, 1400, 1800, 2000, 2400
+
+	100 + 2400 = 2500 
+		Need to decrease here so we make the smallest decrement possible
+
+	100 + 2000 = 2100	
+		Need to decrease here still
+
+	100 + 1800 = 1900
+		Now we need to increase to get closer to 2000 so we make the smallest increment possible
+
+	400 + 1800 = 2200
+		Because we exceeded the target while making the smallest increment possible, 
+		we know there's no possible way to get closer to our target
+
+	Worst-case we have to iterate through each item a single time, so the runtime is O(n)
+
+2. find_triple
+	
+	This problem is similar to the find_pair problem in that we can still use the same idea
+		minimum increments or decrements. 
+
+	At first, I thought about following the exact same algorithm as the find_pair, but having 
+		two incrementing pointers instead of one.
+
+		For instance, using the given example with a larger target:
+		[500, 700, 1000, 1400, 2000, 6000], Target = 4000
+
+		-> 500, 700, 6000 (7200 > 2500, Decrement)
+		--> 500, 700, 2000 (3200 < 4000, Increment)
+		---> 500, 1000, 2000 (3500 < 4000, Increment)
+		----> 500, 1400, 2000 (3900 < 4000, Increment)
+		-----> 700, 1400, 2000 (4100 > 4000, Decrement?)
+		...
+		...
+
+		I realized that there would be different combinations, or ways of ordering my increments/decrements that 
+		I would have to keep track of to make sure I wasnt missing any combination of items. 
+		For example, in the increment from step 3 to step 4, I probably should have changed 500 to 700 (+200) 
+		instead of changing 1000 to 1400 (+400).
+
+	After realizing this, I recognized that I could use my find_pair solution to come up with a
+		better solution for finding triples:
+
+		For a given item A, I need to find two more items B and C amongst the remaining items that will sum 
+		as close as possible to (gift_card - price of A). 
+
+		If I do this for all items A, then I should have covered all the combinations and I can just compare all 
+		n-2 sets of (A,B,C) and take the one that gives me the largest sum.
+
+		Using the following example:
+		[100, 200, 900, 1000, 1100, 2600], Target = 3000
+
+		A) 100 + find_pair( [200...2600], (3000 - 100) ) 
+			= 100 + (200 + 2600) 
+			= 2900
+		B) 200 + find_pair( [100, 900...2600], (3000 - 200) ) 
+			= 200 + (100 + 2600)
+			= 2900
+		C) 900 + find_pair( [...200, 1000...], (3000 - 900))
+			= 900 + (1000 + 1100) 
+			= 3000
+
+		Comparing A, B and C:
+			C is largest and also matches our target, thus the item values are 900, 1000 and 1100.
+
+	This solution iterates through n-2 possible choices of an item A and for each of those items, we have to 
+		run find_pair, which we already determined to be O(n). Thus the total runtime of this solution for finding
+		triples if O(n^2).
+
+
+
+
+
+
+
+
+
