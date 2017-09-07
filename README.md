@@ -5,14 +5,46 @@ Jason Shen
 
 # Instructions for running the code:
 
-### Prior to running:
+## Prior to running:
 
 * Download repository
 * Download and install Python
-* Download and install MongoDB (Required for Problem 1)
+* Download and install MongoDB (Required if running problem 1 locally)
   https://docs.mongodb.com/manual/installation/
 
-### Problem 1
+## Problem 1
+
+### Method 1: From the Web
+
+The web service has been published to Heroku. Simply run:
+
+``` 
+$ curl -X POST -H "Content-Type: application/json" -d '{"message": "foo"}' jasonshenpaxos.herokuapp.com/messages
+
+{"digest": "2c26b46b68ffc68ff99b453c1d30413413422d706483bfa0f98a5e886266e7ae"}
+```
+
+```
+$ curl jasonshenpaxos.herokuapp.com/messages/2c26b46b68ffc68ff99b453c1d30413413422d706483bfa0f98a5e886266e7ae
+
+{"message": "foo"}
+```
+
+```
+$ curl -i jasonshenpaxos.herokuapp.com/messages/rickfox
+
+HTTP/1.1 404 Not Found
+X-Powered-By: Express
+Content-Type: text/plain; charset=utf-8
+Content-Length: 9
+ETag: W/"9-0gXL1ngzMqISxa6S1zx3F4wtLyg"
+Date: Wed, 06 Sep 2017 22:47:55 GMT
+Connection: keep-alive
+
+Not Found
+```
+
+### Method 2: From localhost
 
 * Change to your MongoDB directory and start the primary Mongo daemon process:
 
@@ -56,7 +88,7 @@ Connection: keep-alive
 Not Found
 ```
 
-### Problem 2
+## Problem 2
 
 * Change directory to Paxos/question2
 
@@ -88,7 +120,7 @@ $python test.py
 
 * Implementation details and explanations are provided in solutions.txt
 
-### Problem 3
+## Problem 3
 
 * Default driver program is main.py, imports helper.py. To run:
 
